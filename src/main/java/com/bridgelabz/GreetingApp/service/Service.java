@@ -11,25 +11,15 @@ import java.util.Map;
 public class Service {
     private final Map<Long, Greeting> messages = new HashMap<>();
 
-    public boolean createMessage(Greeting myGreet) {
-        messages.put(myGreet.getId(), myGreet);
-        return true;
-    }
-
-    public Greeting getGreetingById(Long myId) {
-        return messages.get(myId);
-    }
-
-    public List<Greeting> getAll(){
-        return new ArrayList<>(messages.values());
-    }
-
-
-    public Greeting deleteGreetingById(Long myId) {
-        return messages.remove(myId);
-    }
-
-    public Greeting updateGreetingById(Long id, Greeting msg) {
-        return messages.put(id, msg);
+    public String getGreeting(String firstName, String lastName) {
+        if (firstName != null && lastName != null) {
+            return "Hello " + firstName + " " + lastName + "!";
+        } else if (firstName != null) {
+            return "Hello " + firstName + "!";
+        } else if (lastName != null) {
+            return "Hello " + lastName + "!";
+        } else {
+            return "Hello World!";
+        }
     }
 }

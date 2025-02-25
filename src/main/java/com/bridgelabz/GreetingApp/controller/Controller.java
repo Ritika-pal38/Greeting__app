@@ -19,34 +19,11 @@ public class Controller {
     public Controller(Service greetingService) {
         this.greetingService = greetingService;
     }
-
     @GetMapping
-    public  String greeting(){
-        return "Hello,from get method";
-    }
-    @GetMapping("/all")
-    public List<Greeting> getAll(){
-        return greetingService.getAll();
-    }
-
-    @PostMapping
-    public boolean createMessage(@RequestBody Greeting myGreet) {
-        return greetingService.createMessage(myGreet);
-    }
-
-    @GetMapping("/id/{myId}")
-    public Greeting getGreetingById(@PathVariable Long myId) {
-        return greetingService.getGreetingById(myId);
-    }
-
-    @DeleteMapping("/id/{myId}")
-    public Greeting deleteGreetingById(@PathVariable Long myId) {
-        return greetingService.deleteGreetingById(myId);
-    }
-
-    @PutMapping("/id/{myId}")
-    public Greeting updateGreetingById(@PathVariable Long id, @RequestBody Greeting msg) {
-        return greetingService.updateGreetingById(id, msg);
+    public String getGreeting(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+        return greetingService.getGreeting(firstName, lastName);
     }
 
 
